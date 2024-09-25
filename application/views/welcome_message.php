@@ -169,7 +169,6 @@
 
     <!-- Home -->
     <section>
-        <!--HTML CODE-->
         <div class="mx-auto max-w-screen-xl">
             <div class="swiper progress-slide-carousel swiper-container relative">
                 <div class="swiper-wrapper">
@@ -243,14 +242,6 @@
     </main>
 
     <!-- Footer -->
-    <!--
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
-
-  Plugins:
-    - @tailwindcss/forms
--->
 
     <footer class="bg-white">
         <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8">

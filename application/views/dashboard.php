@@ -31,7 +31,7 @@
             
         </div><!-- /.row -->
 
-    </section><!-- /.content -->
+    </section>
 </html>
 
 <script src="<?php echo base_url('assets/js/plugins/jQuery/jQuery-2.1.3.min.js'); ?>"></script>
