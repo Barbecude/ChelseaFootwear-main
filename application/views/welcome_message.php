@@ -80,7 +80,15 @@
                             </span>
                             <?php echo $this->session->userdata('nama') ?>
                         </a>
-
+                        <?php if ($this->session->userdata('role') == 'Admin') : ?>
+                        <a class="block px-4 py-2  text-black font-medium text-sm hover:bg-gray-100 flex items-center"
+                            href="<?php echo site_url('dashboard'); ?>">
+                            <span class="material-symbols-outlined me-2">
+                                dashboard
+                            </span>
+                            Dashboard
+                        </a>
+                        <?php endif; ?>
                         <hr>
                         <a class="block px-4 py-2 text-red-500 font-medium text-sm hover:bg-gray-100 flex items-center"
                             href="<?php echo site_url('dashboard/logout'); ?>">

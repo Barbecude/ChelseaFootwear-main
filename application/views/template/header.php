@@ -29,9 +29,7 @@
                             <div class="pull-right">
                                 <a href="<?php echo site_url('dashboard/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                             </div>
-                            <div class="text-center">
-                                <a href="<?php echo site_url('welcome'); ?>" class="btn btn-default btn-flat">pergi ke website anda</a>
-                            </div>
+
                         </li>
                     </ul>
                 </li>
