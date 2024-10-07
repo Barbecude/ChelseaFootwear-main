@@ -30,17 +30,17 @@ class M_masterdata extends CI_Model{
 	public function insert_pegawai()
 	{
 		$simpan = [
-			'nama'			=> $this->input->post('nama'),
+'nama'			=> $this->input->post('nama'),
 			'alamat'		=> $this->input->post('alamat'),
 			'kelamin'		=> $this->input->post('kelamin'),
 			'hp'			=> $this->input->post('hp'),
-			'jabatan'		=> $this->input->post('jabatan'),
-			'gelar'			=> $this->input->post('gelar'),
-			'tempat_lahir'	=> $this->input->post('tempat_lahir'),
+			// 'jabatan'		=> $this->input->post('jabatan'),
+			// 'gelar'			=> $this->input->post('gelar'),
+			// 'tempat_lahir'	=> $this->input->post('tempat_lahir'),
 			'tanggal_lahir'	=> $this->input->post('tgl_lahir'),
-			'agama'			=> $this->input->post('agama'),
-			'tipe_pegawai'	=> $this->input->post('tipe_pegawai'),
-			'nomor_pegawai'	=> $this->input->post('no_pegawai'),
+			// 'agama'			=> $this->input->post('agama'),
+			// 'tipe_pegawai'	=> $this->input->post('tipe_pegawai'),
+			// 'nomor_pegawai'	=> $this->input->post('no_pegawai'),
 			'email'			=> $this->input->post('email')
 		];
 
@@ -55,13 +55,13 @@ class M_masterdata extends CI_Model{
 			'alamat'		=> $this->input->post('alamat'),
 			'kelamin'		=> $this->input->post('kelamin'),
 			'hp'			=> $this->input->post('hp'),
-			'jabatan'		=> $this->input->post('jabatan'),
-			'gelar'			=> $this->input->post('gelar'),
-			'tempat_lahir'	=> $this->input->post('tempat_lahir'),
+			// 'jabatan'		=> $this->input->post('jabatan'),
+			// 'gelar'			=> $this->input->post('gelar'),
+			// 'tempat_lahir'	=> $this->input->post('tempat_lahir'),
 			'tanggal_lahir'	=> $this->input->post('tgl_lahir'),
-			'agama'			=> $this->input->post('agama'),
-			'tipe_pegawai'	=> $this->input->post('tipe_pegawai'),
-			'nomor_pegawai'	=> $this->input->post('no_pegawai'),
+			// 'agama'			=> $this->input->post('agama'),
+			// 'tipe_pegawai'	=> $this->input->post('tipe_pegawai'),
+			// 'nomor_pegawai'	=> $this->input->post('no_pegawai'),
 			'email'			=> $this->input->post('email')
 		];
 
@@ -101,9 +101,10 @@ class M_masterdata extends CI_Model{
 	}
 
 	public function get_jabatan_all()
-	{
-		return $this->db->query('SELECT * FROM jabatan WHERE jabatan_id  ORDER BY nama_jabatan ASC')->result_array();
-	}
+{
+    return $this->db->query('SELECT * FROM jabatan ORDER BY nama_jabatan ASC')->result_array();
+}
+
 
 
 	public function get_one_jabatan()
@@ -221,9 +222,10 @@ class M_masterdata extends CI_Model{
 
 
 	public function get_agama_all()
-	{
-		return $this->db->query('SELECT * FROM agama WHERE id_agama ORDER BY nama_agama ASC')->result_array();
-	}
+{
+    return $this->db->query('SELECT * FROM agama ORDER BY nama_agama ASC')->result_array();
+}
+
 
 	public function get_agama()
 	{
@@ -280,11 +282,11 @@ class M_masterdata extends CI_Model{
 	}
 
 
-
 	public function get_shift_all()
 	{
-		return $this->db->query('SELECT * FROM shift WHERE id_shift ORDER BY nama_shift ASC')->result_array();
+		return $this->db->query('SELECT * FROM shift ORDER BY nama_shift ASC')->result_array();
 	}
+	
 
 	public function get_shift()
 	{

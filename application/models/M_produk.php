@@ -4,6 +4,11 @@ class M_produk extends CI_Model{
 	{
 		return $this->db->query('SELECT * FROM produk ORDER BY id ASC')->result_array();
 	}
+	public function get_total_produk()
+    {
+        return $this->db->count_all('produk'); // Menghitung total jumlah produk
+    }
+	
 	public function get_produk()
 	{
 		return $this->db->query('SELECT * FROM produk ORDER BY id ASC')->result_array();
@@ -13,6 +18,13 @@ class M_produk extends CI_Model{
 	{
 		return $this->db->query('SELECT * FROM produk WHERE id = '.$this->uri->segment(3).' ')->row_array();
 	}
+
+	public function get_produk_by_id($id) {
+        // Ambil data produk berdasarkan ID
+        $this->db->where('id', $id);
+        $query = $this->db->get('produk');
+        return $query->row(); // Mengembalikan satu baris data
+    }
 	public function insert_produk()
 	{
 		$simpan = [
@@ -20,6 +32,8 @@ class M_produk extends CI_Model{
 		
 			'nama_produk'           => $this->input->post('nama_produk'),
 			'gambar_satu'       => $gambar_satu,
+			'jenis'           => $this->input->post('jenis'),
+            'deskripsi'           => $this->input->post('deskripsi'),
 			'harga'     => $this->input->post('harga'),
 		];
 
@@ -31,6 +45,8 @@ class M_produk extends CI_Model{
 		$update = [
 			'nama_produk'           => $this->input->post('nama_produk'),
 			'gambar_satu'       => $gambar_satu,
+			'jenis'           => $this->input->post('jenis'),
+            'deskripsi'           => $this->input->post('deskripsi'),
 			'harga'     => $this->input->post('harga'),
 		];
         

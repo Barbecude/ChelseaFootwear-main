@@ -387,6 +387,7 @@ $config['encryption_key'] = '';
 |
 */
 $config['sess_driver'] = 'files';
+$config['sess_save_path'] = sys_get_temp_dir();
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
 $config['sess_expiration'] = 7200;

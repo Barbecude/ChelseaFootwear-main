@@ -31,13 +31,40 @@ class Masterdata extends CI_Controller {
         ];
         $this->template->display('masterdata/user/add', $data);
     }
+    public function user_edit()
+    {
+        $data = [
+            'breadcum'          => 'Masterdata Pegawai',
+            'link_simpan'       => 'masterdata/simpan_edit_user',
+            'user'           => $this->m_masterdata->get_user(),
+        ];
+        $this->template->display('masterdata/user/edit', $data);
+    }
+    public function user_update()
+    {
+        $this->m_masterdata->update_user();
+
+        if($ok){
+            json_encode($ok);
+        }
+    }
+    public function user_hapus()
+    {
+        $ok = $this->m_user->delete_user();
+
+        if($ok){
+            die('<script>alert("Data Berhasil Di Aktif/Non Aktif"); window.location.replace("'.base_url("masterdata/user").'");</script>');
+        }else{
+            die('<script>alert("Data Gagal Di Aktif/Non Aktif"); window.location.replace('.base_url("masterdata/user").');</script>');
+        }
+    }
     // END USER
 
     // START PEGAWAI
     public function pegawai()
     {
         $data = [
-            'breadcum'          => 'Masterdata Pegawai',
+            'breadcum'          => 'User',
             'link_tambah'       => 'masterdata/pegawai_add',
             'pegawai'           => $this->m_masterdata->get_pegawai_all(),
         ];
@@ -66,9 +93,9 @@ class Masterdata extends CI_Controller {
             'breadcum'          => 'Masterdata Pegawai',
             'link_simpan'       => 'masterdata/simpan_edit_pegawai',
             'pegawai'           => $this->m_masterdata->get_one_pegawai(),
-            'jabatan'           => $this->m_masterdata->get_jabatan(),
-            'gelar'             => $this->m_masterdata->get_gelar(),
-            'agama'             => $this->m_masterdata->get_agama(),
+            // 'jabatan'           => $this->m_masterdata->get_jabatan(),
+            // 'gelar'             => $this->m_masterdata->get_gelar(),
+            // 'agama'             => $this->m_masterdata->get_agama(),
         ];
         $this->template->display('masterdata/pegawai/edit', $data);
     }
@@ -85,9 +112,9 @@ class Masterdata extends CI_Controller {
         $ok = $this->m_masterdata->delete_pegawai();
 
         if($ok){
-            die('<script>alert("Data Berhasil Di Aktif/Non Aktif"); window.location.replace("'.base_url("masterdata/pegawai").'");</script>');
+            die('<script> window.location.replace("'.base_url("masterdata/pegawai").'");</script>');
         }else{
-            die('<script>alert("Data Gagal Di Aktif/Non Aktif"); window.location.replace('.base_url("masterdata/pegawai").');</script>');
+            die('<script> window.location.replace('.base_url("masterdata/pegawai").');</script>');
         }
     }
     public function pegawai_hapus()
@@ -95,9 +122,9 @@ class Masterdata extends CI_Controller {
         $ok = $this->m_masterdata->hapus_pegawai();
 
         if($ok){
-            die('<script>alert("Data Berhasil Di hapus"); window.location.replace("'.base_url("masterdata/pegawai").'");</script>');
+            die('<script> window.location.replace("'.base_url("masterdata/pegawai").'");</script>');
         }else{
-            die('<script>alert("Data Gagal Di hapus"); window.location.replace('.base_url("masterdata/pegawai").');</script>');
+            die('<script window.location.replace('.base_url("masterdata/pegawai").');</script>');
         }
      }
 

@@ -35,10 +35,12 @@
                                         <td><?php echo $bg['nama']; ?></td>
                                         <td><?php echo $bg['u_name']; ?></td>
                                         <td><?php echo $bg['role']; ?></td>
+                                        <td><?php echo $bg['u_id']; ?></td>
+                                        
                                         <td>
-                                            <a href="<?php echo base_url()?>Masterdata/user_group/<?php echo $bg['id']?>" class="btn btn-primary" title="User Group"><i class="fa fa-pencil"></i></a>&nbsp;
-                                            <a href="<?php echo base_url()?>Masterdata/user_edit/<?php echo $bg['id']?>" class="btn btn-warning" title="Edit Data"><i class="fa fa-pencil"></i></a>&nbsp;
-                                            <a href="<?php echo base_url()?>Masterdata/user_delete/<?php echo $bg['id']?>" class="btn btn-danger" title="Hapus Data"><i class="fa fa-trash-o"></i></a>
+                                            <a href="<?php echo base_url()?>Masterdata/user_group/<?php echo $bg['u_id']?>" class="btn btn-primary" title="User Group"><i class="fa fa-pencil"></i></a>&nbsp;
+                                            <a href="<?php echo base_url()?>Masterdata/user_edit/<?php echo $bg['u_id']?>" class="btn btn-warning" title="Edit Data"><i class="fa fa-pencil"></i></a>&nbsp;
+                                            <a href="<?php echo base_url()?>Masterdata/user_delete/<?php echo $bg['u_id']?>" class="btn btn-danger" title="Hapus Data"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>

@@ -1,132 +1,95 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>PT PANDAWA YOGASWARA ABADI TEKNOLOGI</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/logo.jpeg">
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- Bootstrap 3.3.2 -->
-        <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- Font Awesome Icons -->
-        <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- Ionicons -->
-        <link href="<?php echo base_url('assets/css/ionicons.min.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- Morris chart -->
-        <link href="<?php echo base_url('assets/js/plugins/morris/morris.css'); ?>" rel="stylesheet" >
-        <!-- jvectormap -->
-        <link href="<?php echo base_url('assets/js/plugins/jvectormap/jquery-jvectormap-1.2.2.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- Daterange picker -->
-        <link href="<?php echo base_url('assets/js/plugins/daterangepicker/daterangepicker-bs3.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
-        <link href="<?php echo base_url('assets/css/AdminLTE.min.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- landingpage -->
-        <link href="<?php echo base_url('assets/assets_web/css/style.css'); ?>" rel="stylesheet" type="text/css" />
-        <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
-        <link href="<?php echo base_url('assets/css/skins/_all-skins.min.css'); ?>" rel="stylesheet" type="text/css" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT PANDAWA YOGASWARA ABADI TEKNOLOGI</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.jpeg">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/jquery.dataTables.min.css'); ?>">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <style type="text/css">
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background-color: #fff;
-        }
-        .preloader .loading {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            font: 14px arial;
-        }
-    </style>
-    
-    <body class="skin-blue">
-        <div class="preloader">
-            <div class="loading">
-                <i class="fa fa-circle-o-notch"></i><!--Disini Kasih Logo Lebih Bagus-->
-            </div>
+    <!-- Tambahkan Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Ionicons (Jika diperlukan) -->
+    <link href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
+    <!-- Custom styles -->
+    <link href="<?php echo base_url('assets/assets_web/css/style.css'); ?>" rel="stylesheet" type="text/css" />
+</head>
+<style>
+    .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background-color: #fff;
+    }
+</style>
+
+<body class="bg-gray-100">
+    <!-- Preloader -->
+    <div class="preloader flex items-center justify-center bg-white">
+        <div class="loading">
+            <i class="fa fa-circle-o-notch animate-spin text-gray-700"></i>
         </div>
-        <div class="wrapper">
+    </div>
+
+    <!-- Wrapper -->
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-blue-500 text-white p-4 hidden">
             <?php echo $_header; ?>
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php echo $_sidebar; ?>
-            <!-- Right side column. Contains the navbar and content of the page -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <?php echo $_content; ?> 
-            </div><!-- /.content-wrapper -->
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0
-                </div>
-                <strong>Copyright &copy; 2022 DEDY</strong> All rights reserved.
-            </footer>
-        </div><!-- ./wrapper -->
-        <!-- jQuery 2.1.3 -->
-        <script src="<?php echo base_url('assets/js/plugins/jQuery/jQuery-2.1.3.min.js'); ?>"></script>
-        <!-- Bootstrap 3.3.2 JS -->
-        <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
-        <!-- FastClick -->
-        <script src="<?php echo base_url('assets/js/plugins/fastclick/fastclick.min.js'); ?>"></script>
-        <!-- AdminLTE App -->
-        <script src="<?php echo base_url('assets/js/AdminLTE/app.min.js'); ?>" type="text/javascript"></script>
-        <!-- Sparkline -->
-        <script src="<?php echo base_url('assets/js/plugins/sparkline/jquery.sparkline.min.js'); ?>" type="text/javascript"></script>
-        <!-- jvectormap -->
-        <script src="<?php echo base_url('assets/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'); ?>" type="text/javascript"></script>
-        <script src="<?php echo base_url('assets/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'); ?>" type="text/javascript"></script>
-        <!-- daterangepicker -->
-        <script src="<?php echo base_url('assets/js/plugins/daterangepicker/daterangepicker.js'); ?>" type="text/javascript"></script>
-        <!-- datepicker -->
-        <script src="<?php echo base_url('assets/js/plugins/datepicker/bootstrap-datepicker.js'); ?>" type="text/javascript"></script>
-        <!-- iCheck -->
-        <script src="<?php echo base_url('assets/js/plugins/iCheck/icheck.min.js'); ?>" type="text/javascript"></script>
-        <!-- SlimScroll 1.3.0 -->
-        <script src="<?php echo base_url('assets/js/plugins/slimScroll/jquery.slimscroll.min.js'); ?>" type="text/javascript"></script>
-        <!-- ChartJS 1.0.1 -->
-        <script src="<?php echo base_url('assets/js/plugins/chartjs/Chart.min.js'); ?>" type="text/javascript"></script>
+        </header>
 
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="<?php echo base_url('assets/js/AdminLTE/dashboard2.js'); ?>" type="text/javascript"></script>
+        <!-- Sidebar dan Konten Utama -->
+        <div class="flex flex-grow">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-gray-800 text-white">
+                <?php echo $_sidebar; ?>
+            </aside>
 
-        <!-- AdminLTE for demo purposes -->
-        <script src="<?php echo base_url('assets/js/AdminLTE/demo.js'); ?>"></script> 
+            <!-- Content -->
+            <main class="flex-grow bg-gray-900 text-white p-6">
+                <h1 class="text-2xl font-bold mb-4"></h1>
+                <?php echo $_content; ?>
+            </main>
+        </div>
 
-        <script type="text/javascript" charset="utf8" src="<?php echo base_url('assets/js/jquery.dataTables.js'); ?>"></script>
-    </body>
-</html>
-<script>
-        $(document).ready(function(){
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white p-4">
+            <div class="text-sm">
+                <b>Version</b> 1.0
+            </div>
+            <div class="text-xs">
+                <strong>&copy; 2022 DEDY</strong> All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="<?php echo base_url('assets/js/plugins/jQuery/jQuery-2.1.3.min.js'); ?>"></script>
+
+    <!-- DataTables dan Custom Script -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Menghilangkan preloader
             $(".preloader").fadeOut();
-        })
-</script>
-<script>
-    $(function () {
-        $('#tb-datatables').dataTable({"aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]});       
-        $('.dataTables_filter input').addClass('form-control').attr('placeholder', 'Search');
 
-    }); 
+            // DataTable
+            $('#tb-datatables').DataTable({
+                "paging": true,
+                "info": false,
+                scrollX: true,
+                scrollCollapse: true,
+                "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}]
+            });
 
-    $(document).ready(function(){
-        $('#datepicker').datepicker();
-    });
+            // Menambah kelas Tailwind pada input search
+            $('.dataTables_filter input').addClass('p-2 border rounded').attr('placeholder', 'Search');
 
-    let table = new DataTable('#table1', {
-    // options
-        "paging": true,
-        "info"  : false,
-        scrollX: true,
-        scrollCollapse: true
-    });
-</script>
+            // Datepicker (jika masih digunakan)
+            $('#datepicker').datepicker();
+        });
+    </script>
+</body>
+</html>

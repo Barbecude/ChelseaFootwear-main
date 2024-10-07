@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Dashboard
-            <small>Version 2.0</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="welcome"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-        </ol>
-    </section>
+  
 
     <!-- Main content -->
     <section class="content">
-        <!-- Info boxes -->
-        <div class="row">
+     
             
-            <a href="<?php echo base_url()?>Masterdata/pegawai">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-red"><i class="fa fa-user-times"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Pegawai</span>
-                        <span class="info-box-number"><?php echo $pegawai['jml_pegawai']; ?></span>
-                    </div><!-- /.info-box-content -->
-                </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            </a>
-            
-        </div><!-- /.row -->
+          
+            <div class="grid grid-cols-4 gap-4">
+                <div class="bg-gray-800 border border-gray-700 flex flex-col rounded-lg p-4">
+                    <div class="bg-blue-800/30 w-12 h-12 flex justify-center items-center rounded-lg mb-2">
+                        <span class="info-box-icon text-blue-500 text-xl"><i class="fa fa-user"></i></span>
+                    </div>
+                    <span class="info-box-text text-gray-400">Pegawai</span>
+                    <span class="text-4xl text-white font-medium"><?php echo $pegawai['jml_pegawai']; ?></span>
+                </div>
+                <a href="<?php echo base_url()?>produk">
+                <div class="bg-gray-800 border border-gray-700 flex flex-col rounded-lg p-4">
+                    <div class="bg-green-800/30 w-12 h-12 flex justify-center items-center rounded-lg mb-2">
+                        <span class="info-box-icon text-green-500 text-xl"><i class="fa fa-cube"></i></span>
+                    </div>
+                    <span class="info-box-text text-gray-400">Produk</span>
+                    <span class="text-4xl text-white font-medium"><?php echo $produk['jml_produk']; ?></span>
+                </div>
+                </a>
+                <a href="<?php echo base_url()?>produk">
+                <div class="bg-gray-800 border border-gray-700 flex flex-col rounded-lg p-4">
+                    <div class="bg-pink-800/30 w-12 h-12 flex justify-center items-center rounded-lg mb-2">
+                        <span class="info-box-icon text-pink-500 text-xl"><i class="fa fa-users"></i></span>
+                    </div>
+                    <span class="info-box-text text-gray-400">User</span>
+                    <span class="text-4xl text-white font-medium"><?php echo $user['jml_person']; ?></span>
+                </div>
+                </a>
+            </div>
 
     </section>
 </html>

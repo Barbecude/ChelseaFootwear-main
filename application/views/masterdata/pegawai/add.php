@@ -30,26 +30,8 @@
                                     <input type="text" name="hp" id="hp" class="form-control" autocomplete="off">
                                 </div>
                                 <br/><br/>
-                                <div class="col-md-2"><label class="control-label" for="jabatan">Jabatan</label></div>
-                                <div class="col-md-10">
-                                    <select class="form-control" name="jabatan">
-                                        <option value="">-- Pilih Jabatan --</option>
-                                            <?php foreach($jabatan as $j){ ?>
-                                                <option value="<?php echo $j['jabatan_id']; ?>"><?php echo $j['nama_jabatan']; ?></option>
-                                            <?php } ?>
-                                    </select>
-                                </div>
-                                <br/><br/>
-                                <div class="col-md-2"><label class="control-label" for="gelar">Gelar</label></div>
-                                <div class="col-md-10">
-                                    <select class="form-control" name="gelar">
-                                        <option value="">-- Pilih Gelar --</option>
-                                            <?php foreach($gelar as $g){ ?>
-                                                <option value="<?php echo $g['id_gelar']; ?>"><?php echo $g['nama_gelar']; ?></option>
-                                            <?php } ?>
-                                    </select>
-                                </div>
-                                <br/><br/>
+                        
+                                
                                 <div class="col-md-2"><label class="control-label" for="kelamin">Jenis Kelamin</label></div>
                                 <div class="col-md-10">
                                     <select name="kelamin" id="kelamin" class="form-control" required>
@@ -69,26 +51,7 @@
                                     <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" required autocomplete="off">
                                 </div>
                                 <br/><br/>
-                                <div class="col-md-2"><label class="control-label" for="agama">Agama</label></div>
-                                <div class="col-md-10">
-                                    <select class="form-control" name="agama">
-                                        <option value="">-- Pilih Agama --</option>
-                                            <?php foreach($agama as $a){ ?>
-                                                <option value="<?php echo $a['id_agama']; ?>"><?php echo $a['nama_agama']; ?></option>
-                                            <?php } ?>
-                                    </select>
-                                </div>
-                                <br><br>
-                                <div class="col-md-2"><label class="control-label" for="tipe_pegawai">Tipe Pegawai</label></div>
-                                <div class="col-md-10">
-                                    <input type="text" name="tipe_pegawai" id="tipe_pegawai" class="form-control" required autocomplete="off">
-                                </div>
-                                <br/><br/>
-                                <div class="col-md-2"><label class="control-label" for="no_pegawai">No Pegawai</label></div>
-                                <div class="col-md-10">
-                                    <input type="text" name="no_pegawai" id="no_pegawai" class="form-control" autocomplete="off">
-                                </div>
-                                <br/><br/>
+                              
                                 <div class="col-md-2"><label class="control-label" for="email">Email</label></div>
                                 <div class="col-md-10">
                                     <input type="email" name="email" id="email" class="form-control" autocomplete="off">

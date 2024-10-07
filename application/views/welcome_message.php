@@ -50,57 +50,8 @@
 <body>
     <!-- header-top -->
     <header>
-        <div class="bg-gray-100">
-            <div class="mx-auto flex max-w-screen-xl items-center justify-end gap-4 h-10 px-4">
-                <?php if (!$this->session->userdata('u_name')): ?>
-                <a class="text-sm font-medium text-black" href="<?php echo base_url()?>Login" target="_blank">
-                    Login
-                </a>
-                <span class="text-sm font-medium text-black">|</span>
-                <a class="text-sm font-medium text-black" href="<?php echo base_url('register')?>" target="_blank">
-                    Register
-                </a>
-                <?php endif; ?>
-                <?php if ($this->session->userdata('u_name')): ?>
-                <div class="relative">
-                    <span class="material-symbols-outlined cursor-pointer hover:bg-gray-200 p-2" id="profile-button">
-                        account_circle
-                    </span>
-                    <?php
-                    $koneksi = mysqli_connect("localhost","root",'',"website_pandawa");
-                    $query_mysql = mysqli_query($koneksi, "SELECT * FROM user");
-                    $data = mysqli_fetch_array($query_mysql);
-                        ?>
-                    <div id="profile-dropdown"
-                        class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg hidden z-50 transition">
-                        <a class="block px-4 py-2 font-medium text-sm hover:bg-gray-100 flex items-center"
-                            href="profile?u_id=<?= $data['u_id']; ?>">
-                            <span class="material-symbols-outlined me-2" id="profile-button">
-                                account_circle
-                            </span>
-                            <?php echo $this->session->userdata('nama') ?>
-                        </a>
-                        <?php if ($this->session->userdata('role') == 'Admin') : ?>
-                        <a class="block px-4 py-2  text-black font-medium text-sm hover:bg-gray-100 flex items-center"
-                            href="<?php echo site_url('dashboard'); ?>">
-                            <span class="material-symbols-outlined me-2">
-                                dashboard
-                            </span>
-                            Dashboard
-                        </a>
-                        <?php endif; ?>
-                        <hr>
-                        <a class="block px-4 py-2 text-red-500 font-medium text-sm hover:bg-gray-100 flex items-center"
-                            href="<?php echo site_url('dashboard/logout'); ?>">
-                            <span class="material-symbols-outlined me-2" id="profile-button">
-                                logout
-                            </span>
-                            Logout
-                        </a>
-                    </div>
-                </div>
-                <?php endif; ?>
-            </div>
+        <div class="bg-yellow-300 bg-fixed py-2">
+                <p class="text-center font-medium text-sm">Discount 50% apabila membeli lebih dari 3 item, hanya setipa hari Jumat! 🎉</p>
         </div>
 
         <div class="mx-auto flex h-16 max-w-screen-xl items-center px-4">
@@ -117,15 +68,26 @@
                 </div>
             </nav>
 
+                <?php if (!$this->session->userdata('u_name')): ?>
+                    <div class="flex gap-2">
 
-                <div class="flex items-center gap-4">
+                    <a class="text-md font-medium py-2 px-5 rounded-lg text-indigo-700 bg-white hover:bg-gray-100 border border-indigo-700 transition duration-300" href="<?php echo base_url('register')?>" target="_blank">
+                        Sign Up
+                    </a>
+
+                    <a class="text-md font-medium py-2 px-5 rounded-lg bg-indigo-700 text-white hover:bg-indigo-800 transition duration-300" href="<?php echo base_url()?>Login" target="_blank">
+                        Login
+                    </a>
+                </div>
+
+                <?php endif; ?>
+                <?php if ($this->session->userdata('u_name')): ?>
+                    <div class="flex items-center gap-4">
                     <div class="hidden md:flex">
-                        <a class="" href="<?php echo site_url('favorite'); ?>">
-                        <span class="absolute bg-black text-white text-xs py-0.5 px-1.5 whitespace-nowrap rounded-full favorite-count hidden"></span>
-                            <img src="<?php echo base_url()?>assets/assets_web/img/icon/favorite.svg"
-                                class="rounded-md hover:bg-gray-100 p-2.5 ">
+                        <a class="rounded-l-lg border-l border-y hover:bg-gray-50 p-2.5 " href="<?php echo site_url('favorite'); ?>">
+                            <span class="absolute bg-black text-white text-xs py-0.5 px-1.5 whitespace-nowrap rounded-full favorite-count hidden"></span>
+                            <img src="<?php echo base_url()?>assets/assets_web/img/icon/favorite.svg">
                         </a>
-                       
                         <div class="hidden sm:flex">
                             <?php  
                             $keranjang = $this->cart->contents();
@@ -134,16 +96,56 @@
                                 $jml_item = $jml_item + $value['qty'];
                             }
                             ?>
-                        <a class="rounded-md hover:bg-gray-100 p-2.5" href="<?php echo site_url('keranjang'); ?>">
-                                <span class="absolute top-12 ms-4 bg-black text-xs text-white px-1 rounded"><?= $jml_item ?></span>
-                                <img src="<?php echo base_url()?>assets/assets_web/img/icon/cart.svg">
-                         </a>
+                        <a class="relative rounded-r-lg border hover:bg-gray-50 p-2.5 flex gap-2" href="<?php echo site_url('keranjang'); ?>">
+                            <span class="bg-red-600 text-xs text-white font-medium px-1 rounded-full absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2"><?= $jml_item ?> </span>
+                            <img src="<?php echo base_url()?>assets/assets_web/img/icon/cart.svg">
+                        </a>
+                    </div>
+                </div>
+                    <div class="relative ">
+                        <div class="border border-gray-200 hover:bg-gray-50 cursor-pointer font-medium p-2.5 rounded-lg flex items-center gap-2 transition" id="profile-button">
+                            <span class="material-symbols-outlined">account_circle</span>
+                            <span class="select-none"><?php echo $this->session->userdata('nama') ?></span>
+                        </div>
+                        <?php
+                        $koneksi = mysqli_connect("localhost","root",'',"website_pandawa");
+                        $query_mysql = mysqli_query($koneksi, "SELECT * FROM user");
+                        $data = mysqli_fetch_array($query_mysql);
+                            ?>
+                        
+                        <div id="profile-dropdown"
+                            class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg hidden z-50 transition">
+                            <a class="block px-4 py-2 font-medium text-sm hover:bg-gray-100 flex items-center"
+                                href="profile?u_id=<?= $data['u_id']; ?>">
+                                <span class="material-symbols-outlined me-2" id="profile-button">
+                                    account_circle
+                                </span>
+                                <?php echo $this->session->userdata('nama') ?>
+                            </a>
+                            <?php if ($this->session->userdata('role') == 'Admin') : ?>
+                            <a class="block px-4 py-2  text-black font-medium text-sm hover:bg-gray-100 flex items-center"
+                                href="<?php echo site_url('dashboard'); ?>">
+                                <span class="material-symbols-outlined me-2">
+                                    dashboard 
+                                </span>
+                                Dashboard
+                            </a>
+                            <?php endif; ?>
+                            <hr>
+                            <a class="block px-4 py-2 text-red-500 font-medium text-sm hover:bg-gray-100 flex items-center"
+                                href="<?php echo site_url('dashboard/logout'); ?>">
+                                <span class="material-symbols-outlined me-2" id="profile-button">
+                                    logout
+                                </span>
+                                Logout
+                            </a>
                         </div>
                     </div>
+                <?php endif; ?>
 
                     <div class="block md:hidden">
                         <button class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
-                        <span class="material-symbols-outlined menu" id="profile-button">
+                            <span class="material-symbols-outlined menu" id="profile-button">
                                 menu
                             </span>
                             <div class="absolute right-0 me-3 mt-2 bg-white border border-gray-200 rounded-md shadow-lg z-10 dropdown-menu hidden">
@@ -153,11 +155,11 @@
                                         </span>
                                 Favorite
                                 </a>
-                                <a href="keranjang" class="block py-2 text-gray-700 hover:bg-gray-100 flex items-center px-3">
-                                        <span class="material-symbols-outlined me-2" id="profile-button">
+                                <a href="<?= base_url('keranjang') ?>" class="block py-2 text-gray-700 hover:bg-gray-100 flex items-center px-3">
+                                    <span class="material-symbols-outlined me-2" id="profile-button">
                                         shopping_cart
-                                        </span>
-                                Cart
+                                    </span>
+                                    Cart
                                 </a>
                             </div>
                         </button>
@@ -169,20 +171,20 @@
 
     <!-- Home -->
     <section>
-        <div class="mx-auto max-w-screen-xl">
+        <div class="mx-auto max-w-screen-xl lg:px-4">
             <div class="swiper progress-slide-carousel swiper-container relative">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="rounded-2xl flex justify-center items-center  mb-0">
+                        <div class="flex justify-center items-center  mb-0">
                             <img src="<?php echo base_url()?>assets/img/home/<?php echo $home['gambar_1'] ?>"
-                                alt="First slide" class="rounded">
+                                alt="slide 1">
                                 
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="rounded-2xl flex justify-center items-center mb-0">
+                        <div class="flex justify-center items-center mb-0">
                             <img src="<?php echo base_url()?>assets/img/home/<?php echo $home['gambar_2'] ?>"
-                                alt="First slide" class="rounded">
+                                alt="slide 2">
                         </div>
                     </div>
                 </div>
@@ -192,49 +194,50 @@
 
     </section>
 
-
-
-
-
-
-
     <!--  Start Produk-->
     <section class="service" id="produk">
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12">
             <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Produk</h2>
             <p class="mt-4 max-w-md text-gray-500">
                 Produk ChelseaFootwear
             </p>
             <ul class="product-container-list mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <?php
-
+                                <?php
                     $query_mysql = mysqli_query(mysqli_connect("localhost","root",'',"website_pandawa"), "SELECT * FROM produk");
                     while($produk = mysqli_fetch_array($query_mysql)){ ?>
-                <li>
-                    <?php
-                    echo form_open('belanja/add');
-                    echo form_hidden('id', $produk['id']);
-                    echo form_hidden('qty', 1);            
-                    echo form_hidden('price',  $produk['harga']);
-                    echo form_hidden('name', $produk['nama_produk']);
-                    echo form_hidden('redirect_page', str_replace('index.php/','', current_url()));
-                    ?>
-                    
-                    <a href="#" class="group block overflow-hidden">
-                    <img src="<?php echo base_url()?>assets/img/produk/<?php echo $produk['gambar_satu'] ?>" alt="First slide">
-                    <div class="flex justify-between mt-3">
-                        <div class="">
-                        <h3 class="text-gray-700"><?php echo $produk['nama_produk'] ?></h3>
-                        <span class="tracking-wider text-gray-900 font-medium">Rp <?php echo number_format($produk['harga'], 0, ',', '.'); ?>
-                        </span>
-                        </div>
-                        <button href="favorite/add" class="hover:bg-gray-200 p-2 rounded-lg"><span class="material-symbols-outlined">favorite</span></button>
-                        <button href="belanja/add" class="hover:bg-gray-200 p-2 rounded-lg"><span class="material-symbols-outlined">shopping_cart</span></button>
-                    </div>
-                    </a>   
-                    <?php echo form_close()?>        
-                </li>
-                <?php } ?>
+                        <?php
+                        echo form_open('belanja/add');
+                        echo form_hidden('id', $produk['id']);
+                        echo form_hidden('qty', 1);            
+                        echo form_hidden('price',  $produk['harga']);
+                        echo form_hidden('name', $produk['nama_produk']);
+                        echo form_hidden('redirect_page', str_replace('index.php/','', current_url()));
+                        ?>
+                        <li class="border rounded-lg shadow-sm">
+                            <div class="group block overflow-hidden">
+                                <div class="m-0 p-0"> 
+                                    <img src="<?php echo base_url()?>assets/img/produk/<?php echo $produk['gambar_satu'] ?>" alt="First slide" class="w-full">
+                                </div>
+                                <div class="flex justify-between mt-5 p-5">
+                                    <div>
+                                        <h3 class="text-gray-700"><?php echo $produk['nama_produk'] ?></h3>
+                                        <span class="tracking-wider text-gray-900 font-medium">Rp <?php echo number_format($produk['harga'], 0, ',', '.'); ?></span>
+                                    </div>
+                                    <button>
+                                        <span class="material-symbols-outlined hover:bg-gray-200 cursor-pointer p-2 rounded-lg transition" id="profile-button">favorite</span>
+                                    </button>
+                                </div>
+                                <div class="px-5 pb-5">
+                                    <button type="submit" class="bg-gray-100 hover:bg-gray-200 font-medium p-3 w-full rounded-lg transition">Tambah ke keranjang</button>
+                                    <?php echo form_close(); ?>
+                                    <a href="<?php echo site_url('detail/' . $produk['id']); ?>" class="bg-gray-100 hover:bg-gray-200 font-medium p-3 w-full rounded-lg transition text-center">Detail</a>
+
+
+                                </div>
+                            </div>
+                        </li>
+                    <?php } ?>
+
             </ul>
 
         </div>
@@ -242,9 +245,8 @@
     </main>
 
     <!-- Footer -->
-
     <footer class="bg-white">
-        <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6">
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex text-teal-600 sm:justify-start mt-2">
                     <img src="<?php echo base_url()?>assets/assets_web/img/icon/logo.png" class="logo-img" alt="LOGO"

@@ -1,5 +1,5 @@
 <?php
-class M_produk extends CI_Model{
+class M_profile extends CI_Model{
 	public function get_user_all()
 	{
 		return $this->db->query('SELECT * FROM user ORDER BY id ASC')->result_array();

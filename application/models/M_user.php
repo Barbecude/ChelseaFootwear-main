@@ -1,7 +1,8 @@
 <?php
 
 class M_user extends CI_Model {
-
+    private $table_user = "user";
+    private $table_person = "person";
     function register($data) {
         $simpan = [
             'nama'          => $this->input->post('nama'),
@@ -17,7 +18,17 @@ class M_user extends CI_Model {
         $this->db->insert('user', $data);
         return $this->db->insert_id();  
     }
- 
+    function get_user_by_username($username) {
+        $this->db->select('u_id, u_name, nama, role, pid');
+        $this->db->where('u_name', $username);
+        $query = $this->db->get($this->table_user);
+        
+        if ($query->num_rows() > 0) {
+            return $query->row(); // Return single user object
+        }
+        return null; // Return null if no user found
+    }
+    
     
 
     private $table = "user";
