@@ -3,7 +3,7 @@ class Register extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model(array('m_user'));
+        $this->load->model('m_user'); // Pastikan model m_user di-load di sini
         if ($this->session->userdata('u_name')) {
             redirect('dashboard');
         }
@@ -14,43 +14,47 @@ class Register extends CI_Controller {
     }
 
     function proses() {
+        // Validasi input
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.u_name]');
+        $this->form_validation->set_rules('u_name', 'Username', 'required|is_unique[person.u_name]'); // Menggunakan u_name
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('register');
         } else {
-            // Get user input from form
+            // Ambil input dari form
             $data = array(
                 'nama' => $this->input->post('nama'),
-                'u_name' => $this->input->post('username'),  // Assign to u_name instead of username
-                'u_paswd' => md5($this->input->post('password')), // Encrypt password using md5
-                'role' => 'user' // Default role
+                'u_name' => $this->input->post('u_name'), // Menggunakan u_name dari input
+                'u_paswd' => md5($this->input->post('password')), // Disimpan di kolom u_paswd
+                'role' => 'user', // Default role, jika perlu disimpan di kolom lain
+                'email' => $this->input->post('email'),
+                'alamat' => $this->input->post('alamat'),
+                'kelamin' => $this->input->post('kelamin'),
+                'hp' => $this->input->post('hp'),
+                'tanggal_lahir' => $this->input->post('tgl_lahir')
             );
 
-            // Save user data to database
-            $insert = $this->m_user->register($data);
+            // Simpan data ke tabel person
+            $insert = $this->m_user->register($data); // Fungsi register di model mengarah ke tabel person
             if ($insert) {
-                // Get user info from database to create session
-                $user = $this->m_user->get_user_by_username($data['u_name']); // Adjust this method as per your model
+                // Ambil informasi user dari database
+                $user = $this->m_user->get_user_by_username($data['u_name']);
                 if ($user) {
                     $sess_data = array(
-                        'u_id' => $user->u_id,
+                        'pid' => $user->pid, // Menggunakan pid dari tabel person
                         'nama' => $user->nama,
                         'u_name' => $user->u_name,
-                        'role' => $user->role,
-                        'pid'  => $user->pid // Include this if applicable
+                        'role' => $user->role
                     );
                     $this->session->set_userdata($sess_data);
                 }
-                $this->session->set_flashdata('success', 'Registration successful. You are now logged in.');
+                $this->session->set_flashdata('success', 'Registrasi berhasil. Anda sudah masuk.');
                 redirect('dashboard');
             } else {
-                $this->session->set_flashdata('error', 'An error occurred. Please try again.');
+                $this->session->set_flashdata('error', 'Terjadi kesalahan. Silakan coba lagi.');
                 redirect('register');
             }
         }
     }    
 }
-?>

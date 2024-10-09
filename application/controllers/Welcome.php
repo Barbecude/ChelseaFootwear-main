@@ -18,7 +18,7 @@ class Welcome extends CI_Controller {
             'layanan'           => $this->db->query('SELECT * FROM layanan ORDER BY id ASC')->row_array(),
             'link_edit'         => 'produk/produk_edit',
             'link_tambah'       => 'produk/produk_add',
-            'produk'            => $this->db->query('SELECT * FROM produk ORDER BY id ASC')->row_array(),
+            'produk'            => $this->db->query('SELECT * FROM produk ORDER BY id ASC')->result_array(),//kirim $produk yg isinya dari array tabel produk
 			'link_edit'         => 'klien/klien',
             'link_tambah'       => 'klien/klien_add',
             'klien'             => $this->db->query('SELECT * FROM klien ORDER BY id ASC')->row_array(),      

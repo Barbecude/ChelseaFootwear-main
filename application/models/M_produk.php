@@ -18,13 +18,9 @@ class M_produk extends CI_Model{
 	{
 		return $this->db->query('SELECT * FROM produk WHERE id = '.$this->uri->segment(3).' ')->row_array();
 	}
-
 	public function get_produk_by_id($id) {
-        // Ambil data produk berdasarkan ID
-        $this->db->where('id', $id);
-        $query = $this->db->get('produk');
-        return $query->row(); // Mengembalikan satu baris data
-    }
+		return $this->db->get_where('produk', ['id' => $id])->row_array();
+	}
 	public function insert_produk()
 	{
 		$simpan = [

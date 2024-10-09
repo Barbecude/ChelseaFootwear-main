@@ -17,11 +17,6 @@ class M_masterdata extends CI_Model{
 		return $this->db->query('SELECT * FROM person WHERE pid = '.$this->uri->segment(3).' ')->row_array();
 	}
 
-	public function get_user()
-	{
-		return $this->db->query('SELECT * FROM user WHERE pid')->result_array();
-	}
-
 	public function get_barang()
 	{
 		return $this->db->query('SELECT a.*, b.nama as nama_supplier FROM barang a, supplier b WHERE a.id_supplier=b.id')->result_array();
@@ -92,6 +87,7 @@ class M_masterdata extends CI_Model{
 		return true;
 		
 	}
+
 
 	public function hapus_pegawai()
 	{

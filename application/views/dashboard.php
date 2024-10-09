@@ -13,7 +13,7 @@
                     <div class="bg-blue-800/30 w-12 h-12 flex justify-center items-center rounded-lg mb-2">
                         <span class="info-box-icon text-blue-500 text-xl"><i class="fa fa-user"></i></span>
                     </div>
-                    <span class="info-box-text text-gray-400">Pegawai</span>
+                    <span class="info-box-text text-gray-400">User</span>
                     <span class="text-4xl text-white font-medium"><?php echo $pegawai['jml_pegawai']; ?></span>
                 </div>
                 <a href="<?php echo base_url()?>produk">
@@ -23,15 +23,6 @@
                     </div>
                     <span class="info-box-text text-gray-400">Produk</span>
                     <span class="text-4xl text-white font-medium"><?php echo $produk['jml_produk']; ?></span>
-                </div>
-                </a>
-                <a href="<?php echo base_url()?>produk">
-                <div class="bg-gray-800 border border-gray-700 flex flex-col rounded-lg p-4">
-                    <div class="bg-pink-800/30 w-12 h-12 flex justify-center items-center rounded-lg mb-2">
-                        <span class="info-box-icon text-pink-500 text-xl"><i class="fa fa-users"></i></span>
-                    </div>
-                    <span class="info-box-text text-gray-400">User</span>
-                    <span class="text-4xl text-white font-medium"><?php echo $user['jml_person']; ?></span>
                 </div>
                 </a>
             </div>

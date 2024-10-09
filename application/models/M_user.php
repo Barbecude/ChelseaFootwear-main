@@ -1,95 +1,70 @@
 <?php
 
 class M_user extends CI_Model {
-    private $table_user = "user";
     private $table_person = "person";
+
+    // Fungsi untuk mendaftarkan pengguna
     function register($data) {
+        // Menyimpan data pengguna ke tabel person
         $simpan = [
-            'nama'          => $this->input->post('nama'),
-            'email'			=> $this->input->post('email'),
+            'nama'          => $data['nama'],
+            'email'         => $this->input->post('email'),
             'alamat'        => $this->input->post('alamat'),
             'kelamin'       => $this->input->post('kelamin'),
+            'u_name'        => $data['u_name'],
             'hp'            => $this->input->post('hp'),
-            'tanggal_lahir' => $this->input->post('tgl_lahir')
+            'tanggal_lahir' => $this->input->post('tgl_lahir'),
+            'u_paswd'      => md5($this->input->post('password')) // Menyimpan password yang telah di-hash
         ];
-        $this->db->insert('person', $simpan);
-        $pid = $this->db->insert_id();
-        $data['pid'] = $pid;
-        $this->db->insert('user', $data);
-        return $this->db->insert_id();  
-    }
-    function get_user_by_username($username) {
-        $this->db->select('u_id, u_name, nama, role, pid');
-        $this->db->where('u_name', $username);
-        $query = $this->db->get($this->table_user);
         
-        if ($query->num_rows() > 0) {
-            return $query->row(); // Return single user object
-        }
-        return null; // Return null if no user found
+        // Melakukan penyimpanan ke tabel person
+        $this->db->insert($this->table_person, $simpan);
+        return $this->db->insert_id(); // Mengembalikan ID pengguna yang baru disimpan
     }
-    
-    
 
-    private $table = "user";
+    // Fungsi untuk mengambil pengguna berdasarkan username
+    public function get_user_by_username($username) {
+        return $this->db->get_where($this->table_person, array('u_name' => $username))->row();
+    }
 
+    // Fungsi untuk memeriksa kredensial login
     function cek($username, $password) {
-        // $this->db->where("u_name", $username);
-        // $this->db->where("u_paswd", md5($password));
-        $ok = $this->db->query('SELECT * FROM user a, person b WHERE a.pid=b.pid AND a.u_name=\''.$username.'\' AND u_paswd=\''.md5($password).'\'');
-        // return $this->db->get("user");
-        return $ok;
+        $this->db->where("u_name", $username);
+        $this->db->where("u_paswd", md5($password)); // Menggunakan md5 untuk mencocokkan password
+        return $this->db->get($this->table_person); // Mengembalikan hasil query
     }
 
+    // Fungsi untuk mengambil semua pengguna
     function semua() {
-        return $this->db->get("user");
+        return $this->db->get($this->table_person);
     }
 
+    // Fungsi untuk memeriksa apakah username sudah ada
     function cekKode($kode) {
         $this->db->where("u_name", $kode);
-        return $this->db->get("user");
+        return $this->db->get($this->table_person);
     }
 
+    // Fungsi untuk memeriksa pengguna berdasarkan ID
     function cekId($kode) {
-        $this->db->where("u_id", $kode);
-        return $this->db->get("user");
-    }
-    
-    function getLoginData($usr, $psw) {
-        $u = mysql_real_escape_string($usr);
-        $p = md5(mysql_real_escape_string($psw));
-        $q_cek_login = $this->db->get_where('user', array('username' => $u, 'password' => $p));
-        if (count($q_cek_login->result()) > 0) {
-            foreach ($q_cek_login->result() as $qck) {
-                foreach ($q_cek_login->result() as $qad) {
-                    $sess_data['logged_in'] = 'aingLoginWebYeuh';
-                    $sess_data['u_id'] = $qad->u_id;
-                    $sess_data['u_name'] = $qad->u_name;
-                    $sess_data['nama'] = $qad->nama;
-                    $sess_data['group'] = $qad->group;
-                    $sess_data['rid'] = $qad->rid;
-                    $this->session->set_userdata($sess_data);
-                }
-                redirect('dashboard');
-            }
-        } else {
-            $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukkan salah.');
-            header('location:' . base_url() . 'login');
-        }
+        $this->db->where("pid", $kode); // Menggunakan pid jika itu adalah primary key di tabel person
+        return $this->db->get($this->table_person);
     }
 
+    // Fungsi untuk mengupdate data pengguna
     function update($id, $info) {
-        $this->db->where("u_id", $id);
-        $this->db->update("user", $info);
+        $this->db->where("pid", $id); // Menggunakan pid untuk mengidentifikasi pengguna
+        $this->db->update($this->table_person, $info);
     }
 
+    // Fungsi untuk menyimpan data pengguna
     function simpan($info) {
-        $this->db->insert("user", $info);
+        $this->db->insert($this->table_person, $info);
     }
 
+    // Fungsi untuk menghapus pengguna
     function hapus($kode) {
-        $this->db->where("u_id", $kode);
-        $this->db->delete("user");
+        $this->db->where("pid", $kode); // Menggunakan pid untuk mengidentifikasi pengguna
+        $this->db->delete($this->table_person);
     }
-
 }

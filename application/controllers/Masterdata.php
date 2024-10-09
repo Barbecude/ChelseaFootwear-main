@@ -16,51 +16,7 @@ class Masterdata extends CI_Controller {
     public function index() {
         $this->template->display('dashboard');
     }
-    // START USER
-    public function user()
-    {
-        $data = [
-            'user'  => $this->m_masterdata->get_user(),
-        ];
-        $this->template->display('masterdata/user/index', $data);
-    }
-    public function user_add()
-    {
-        $data = [
-            'person'    =>  $this->m_masterdata->get_pegawai(),
-        ];
-        $this->template->display('masterdata/user/add', $data);
-    }
-    public function user_edit()
-    {
-        $data = [
-            'breadcum'          => 'Masterdata Pegawai',
-            'link_simpan'       => 'masterdata/simpan_edit_user',
-            'user'           => $this->m_masterdata->get_user(),
-        ];
-        $this->template->display('masterdata/user/edit', $data);
-    }
-    public function user_update()
-    {
-        $this->m_masterdata->update_user();
 
-        if($ok){
-            json_encode($ok);
-        }
-    }
-    public function user_hapus()
-    {
-        $ok = $this->m_user->delete_user();
-
-        if($ok){
-            die('<script>alert("Data Berhasil Di Aktif/Non Aktif"); window.location.replace("'.base_url("masterdata/user").'");</script>');
-        }else{
-            die('<script>alert("Data Gagal Di Aktif/Non Aktif"); window.location.replace('.base_url("masterdata/user").');</script>');
-        }
-    }
-    // END USER
-
-    // START PEGAWAI
     public function pegawai()
     {
         $data = [
@@ -117,6 +73,29 @@ class Masterdata extends CI_Controller {
             die('<script> window.location.replace('.base_url("masterdata/pegawai").');</script>');
         }
     }
+    public function update_role()
+{
+    $pid = $this->input->post('pid');
+    $role = $this->input->post('role');
+
+    $data = [
+        'role' => $role
+    ];
+
+    $this->db->where('pid', $pid);
+    $ok = $this->db->update('person', $data);
+
+    if ($ok) {
+        // Redirect kembali ke halaman pegawai dengan pesan sukses
+        $this->session->set_flashdata('success', 'Role updated successfully');
+    } else {
+        // Redirect kembali ke halaman pegawai dengan pesan gagal
+        $this->session->set_flashdata('error', 'Failed to update role');
+    }
+
+    redirect('masterdata/pegawai'); // Ganti dengan rute yang sesuai
+}
+
     public function pegawai_hapus()
      {
         $ok = $this->m_masterdata->hapus_pegawai();

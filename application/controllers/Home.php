@@ -20,7 +20,7 @@ class Home extends CI_Controller {
             'link_edit' => 'Home/home_edit',
             'link_tambah' => 'Home/home_add',
             'home' => $home,
-            'produk' => $this->m_home->get_all_data,
+            'produk' => $this->m_home->get_all_data(),
         ];
         $this->template->display('home/index', $data);
     }

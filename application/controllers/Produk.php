@@ -42,17 +42,28 @@ class Produk extends CI_Controller {
         if($this->upload->do_upload("gambar_satu")){
             $data1 = array('upload_data' => $this->upload->data());
             $gambar_satu = $data1['upload_data']['file_name'];
+
+            if (!$this->upload->do_upload('userfile')) {
+                $error = array('error' => $this->upload->display_errors());
+                echo '<pre>';
+                print_r($error); // Ini akan membantu memahami kenapa upload gagal
+                echo '</pre>';
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+                echo 'File berhasil diupload';
+            }
+            
         }else{
             $gambar_satu='';
         }
 
         $datasimpan = [
             'nama_produk'           => $this->input->post('nama_produk'),
-            'jenis'           => $this->input->post('jenis'),
-            'deskripsi'           => $this->input->post('deskripsi'),
-            'gambar_satu'         => $gambar_satu,
-            'created_at' => date('Y-m-d H:i:s'),
-            'harga'     => $this->input->post('harga'),
+            'jenis'                 => $this->input->post('jenis'),
+            'deskripsi'             => $this->input->post('deskripsi'),
+            'gambar_satu'           => $gambar_satu,
+            'created_at'            => date('Y-m-d H:i:s'),
+            'harga'             => $this->input->post('harga'),
         ];
 
 

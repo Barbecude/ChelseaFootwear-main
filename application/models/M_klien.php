@@ -39,29 +39,27 @@ class M_klien extends CI_Model{
 		return $ok;
 	}
 
-	public function update_klien()
-	{
+	public function update_klien() {
 		$update = [
-		'judul'     => $this->input->post('judul'),
-		'subjudul_1'     => $this->input->post('subjudul_1'),
-        'subjudul_2'     => $this->input->post('subjudul_2'),
-        'subjudul_3'     => $this->input->post('subjudul_3'),
-        'subjudul_4'     => $this->input->post('subjudul_4'),
-        'teks_1'     => $this->input->post('teks_1'),
-        'teks_2'     => $this->input->post('teks_2'),
-        'teks_3'     => $this->input->post('teks_3'),
-        'teks_4'     => $this->input->post('teks_4'),
-        'gambar_1'     => $gambar_1,
-        'gambar_2'     => $gambar_2,
-        'gambar_3'     => $gambar_3,
-        'gambar_4'     => $gambar_4
+			'judul'     => $this->input->post('judul'),
+			'subjudul_1' => $this->input->post('subjudul_1'),
+			'subjudul_2' => $this->input->post('subjudul_2'),
+			'subjudul_3' => $this->input->post('subjudul_3'),
+			'subjudul_4' => $this->input->post('subjudul_4'),
+			'teks_1'     => $this->input->post('teks_1'),
+			'teks_2'     => $this->input->post('teks_2'),
+			'teks_3'     => $this->input->post('teks_3'),
+			'teks_4'     => $this->input->post('teks_4'),
+			'gambar_1'   => $this->input->post('gambar_1'), // Pastikan ini sudah terupload
+			'gambar_2'   => $this->input->post('gambar_2'),
+			'gambar_3'   => $this->input->post('gambar_3'),
+			'gambar_4'   => $this->input->post('gambar_4'),
 		];
-
-	 	$this->db->where('id', $this->input->post('id'));
-		$ok = $this->db->update('klien', $update);
-
-		return true;
+	
+		$this->db->where('id', $this->input->post('id'));
+		return $this->db->update('klien', $update);
 	}
+	
 	public function delete_klien()
     {
         $this->db->where('id', $this->uri->segment(3));

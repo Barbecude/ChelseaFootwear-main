@@ -38,11 +38,10 @@
                         <th scope="col" class="px-5 py-5">No</th>
                         <th scope="col" class="px-5 ">Nama</th>
                         <th scope="col" class="px-5 ">Jenis Kelamin</th>
-                        <th scope="col" class="px-5 ">Tempat, Tanggal Lahir</th>
+                        <th scope="col" class="px-5 ">Tanggal Lahir</th>
                         <th scope="col" class="px-5 ">Alamat</th>
                         <th scope="col" class="px-5 ">No HP</th>
-                  
-                   
+                        <th scope="col" class="px-5 ">Role</th>
                         <th scope="col" class="px-5 ">Status</th>
                         <th scope="col" class="px-5 ">Aksi</th>
                     </tr>
@@ -58,7 +57,7 @@
                                 <div class="text-sm text-gray-500 dark:text-gray-400"><?php echo $pgw['email']; ?></div>
                             </td>
                             <td class="px-5 py-5 text-gray-400"><?php echo $pgw['kelamin'] == 'l' ? 'Laki - Laki' : 'Perempuan'; ?></td>
-                            <td class="px-5 py-5 text-gray-400"><?php echo $pgw['tempat_lahir'] . ', ' . date('d M Y', strtotime($pgw['tanggal_lahir'])); ?></td>
+                            <td class="px-5 py-5 text-gray-400"><?php echo date('d M Y', strtotime($pgw['tanggal_lahir'])); ?></td>
                             <td class="px-5 py-5 text-gray-400">
                                     <button onclick="openModal('<?php echo addslashes($pgw['alamat']); ?>')" class="text-blue-500 hover:underline">
                                         Lihat Alamat
@@ -74,8 +73,16 @@
                             </div>
 
                             <td class="px-5 py-5 text-gray-400"><?php echo '0' . $pgw['hp']; ?></td>
-                           
-                          
+                            <td class="px-5 py-5 text-gray-400">
+                                <form action="<?php echo base_url('masterdata/update_role'); ?>" method="post">
+                                    <input type="hidden" name="pid" value="<?php echo $pgw['pid']; ?>">
+                                    <select name="role" onchange="this.form.submit()" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring ring-magenta-500 block w-full p-1.5">
+                                        <option value="user" <?php echo ($pgw['role'] == 'user') ? 'selected' : ''; ?>>User</option>
+                                        <option value="Admin" <?php echo ($pgw['role'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                                    </select>
+                                </form>
+                            </td>
+
                             <td class="px-5 py-5">
                                 <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium 
                                     <?php echo $pgw['aktif'] == 't' ? 'bg-green-800/30 text-green-500' : 'bg-red-800/30 text-red-500'; ?>">
@@ -83,6 +90,7 @@
                                         <?php echo $pgw['aktif'] == 't' ? 'bg-green-500' : 'bg-red-500'; ?>" style="width: 8px; height: 8px;"></span>
                                     <?php echo $pgw['aktif'] == 't' ? 'Active' : 'Non Active'; ?>
                                 </span>
+                                
                             </td>
                             <td class="px-5 py-5 text-gray-400">
                                 <a href="<?php echo base_url() ?>Masterdata/pegawai_edit/<?php echo $pgw['pid'] ?>" class="text-indigo-500 font-medium hover:text-indigo-600" title="Edit Data">Edit</a>
@@ -104,16 +112,17 @@
         $(document).ready(function(){
             $(".preloader").fadeOut();
         });
-        function openModal(alamat) {
-    document.getElementById('modalAlamat').innerText = alamat;
-    document.getElementById('alamatModal').classList.remove('hidden');
-}
+            function openModal(alamat) {
+                document.getElementById('modalAlamat').innerText = alamat;
+                document.getElementById('alamatModal').classList.remove('hidden');
+            }
 
-function closeModal() {
-    document.getElementById('alamatModal').classList.add('hidden');
-}
+            function closeModal() {
+                document.getElementById('alamatModal').classList.add('hidden');
+            }
+
 </script>
-    </script>
+
     
 </body>
 </html>

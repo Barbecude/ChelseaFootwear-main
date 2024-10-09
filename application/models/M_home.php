@@ -54,7 +54,10 @@ class M_home extends CI_Model{
 	{
 		return $this->db->query('SELECT * FROM klien ORDER BY id ASC')->result_array();
 	}
-
+	public function get_all_data()
+	{
+		return $this->db->query('SELECT * FROM home ORDER BY id ASC')->result_array();
+	}
 	public function get_klien()
 	{
 		return $this->db->query('SELECT * FROM klien AND aktif="t" ORDER BY id ASC')->result_array();
