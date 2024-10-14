@@ -28,15 +28,6 @@
                 <img src="<?php echo base_url()?>assets/assets_web/img/icon/logo.png" class="logo-img" alt="LOGO"
                     style="width: 32px">
             </a>
-
-        
-            <nav aria-label="Global" class="flex flex-1 items-center justify-end md:justify-between">
-                <div class="flex items-center">
-                <span class="material-symbols-rounded hover:bg-gray-200 cursor-pointer p-2 rounded-full transition duration-300 relative left-10">search</span>
-                <input type="search" placeholder="Search" class="pl-10 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-black bg-zinc-100">
-                </div>
-            </nav>
-
                 <?php if (!$this->session->userdata('u_name')): ?>
                     <div class="flex gap-2">
 
@@ -47,22 +38,6 @@
                     <a class="text-md font-medium py-2 px-5 rounded-lg bg-indigo-700 text-white hover:bg-indigo-800 transition duration-300" href="<?php echo base_url()?>Login" target="_blank">
                         Login
                     </a>
-                </div>
-
-                <?php endif; ?>
-                <?php if ($this->session->userdata('u_name')): ?>
-                    <div class="flex items-center gap-4">
-                    <div class="hidden md:flex">
-                        <a class="rounded-l-lg border-l border-y hover:bg-gray-50 p-2.5 " href="<?php echo site_url('favorite'); ?>">
-                            <span class="absolute bg-black text-white text-xs py-0.5 px-1.5 whitespace-nowrap rounded-full favorite-count hidden"></span>
-                            <img src="<?php echo base_url()?>assets/assets_web/img/icon/favorite.svg">
-                        </a>
-                        <div class="hidden sm:flex">
-                        <a class="relative rounded-r-lg border hover:bg-gray-50 p-2.5 flex gap-2" href="<?php echo site_url('keranjang'); ?>">
-                            <span class="bg-red-600 text-xs text-white font-medium px-1 rounded-full absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">0 </span>
-                            <img src="<?php echo base_url()?>assets/assets_web/img/icon/cart.svg">
-                        </a>
-                    </div>
                 </div>
                     <div class="relative ">
                         <div class="border border-gray-200 hover:bg-gray-50 cursor-pointer font-medium p-2.5 rounded-lg flex items-center gap-2 transition" id="profile-button">
@@ -190,6 +165,9 @@
     </div>
 
     <button type="submit" class="bg-gray-900 text-white px-6 py-3 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">Save</button>
+    <a href="<?= base_url('/'); ?>">
+    <span class="bg-gray-900 text-white px-6 py-3 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">Kembali</span>
+    </a>
 </form>
 
 
