@@ -136,61 +136,62 @@
 <!-- HALAMAN PROFILE MULAI -->
     <main class="mx-auto max-w-screen-xl px-4 min-h-lvh">
         <h1 class="text-5xl font-semibold mb-8">Profile</h1>
-                        <form action="profile/update_profile" method="POST">
-                    <div class="mb-6">
-                        <label for="email" class="block text-black-700 font-medium mb-2">Email</label>
-                        <input type="email" id="email" name="email"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            value="<?php echo $profile['email']; ?>" required>
-                    </div>
+        <form action="<?php echo base_url('update-profile'); ?>" method="POST">
+    <div class="mb-6">
+        <label for="email" class="block text-black-700 font-medium mb-2">Email</label>
+        <input type="email" id="email" name="email"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            value="<?php echo $profile['email']; ?>" required>
+    </div>
 
-                    <div class="mb-6">
-                        <label for="nama" class="block text-black-700 font-medium mb-2">Nama</label>
-                        <input type="text" id="nama" name="nama"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            required value="<?php echo $profile['nama']; ?>">
-                    </div>
+    <div class="mb-6">
+        <label for="nama" class="block text-black-700 font-medium mb-2">Nama</label>
+        <input type="text" id="nama" name="nama"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            required value="<?php echo $profile['nama']; ?>">
+    </div>
 
-                    <div class="mb-6">
-                        <label for="username" class="block text-black-700 font-medium mb-2">Username</label>
-                        <input type="text" id="username" name="username"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            required value="<?php echo $profile['u_name']; ?>">
-                    </div>
+    <div class="mb-6">
+        <label for="username" class="block text-black-700 font-medium mb-2">Username</label>
+        <input type="text" id="username" name="username"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            required value="<?php echo $profile['u_name']; ?>">
+    </div>
 
-                    <div class=" mb-6">
-                        <label for="kelamin" class="block text-black-700 font-medium mb-2">Kelamin</label>
-                        <select id="kelamin" name="kelamin"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            required>
-                            <option value="l" <?php echo $profile['kelamin'] == 'l' ? 'selected' : ''; ?>>Laki-laki</option>
-                            <option value="p" <?php echo $profile['kelamin'] == 'p' ? 'selected' : ''; ?>>Perempuan</option>
-                        </select>
-                    </div>
+    <div class="mb-6">
+        <label for="kelamin" class="block text-black-700 font-medium mb-2">Kelamin</label>
+        <select id="kelamin" name="kelamin"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            required>
+            <option value="l" <?php echo $profile['kelamin'] == 'l' ? 'selected' : ''; ?>>Laki-laki</option>
+            <option value="p" <?php echo $profile['kelamin'] == 'p' ? 'selected' : ''; ?>>Perempuan</option>
+        </select>
+    </div>
 
-                    <div class="mb-6">
-                        <label for="alamat" class="block text-black-700 font-medium mb-2">Alamat</label>
-                        <input type="text" id="alamat" name="alamat"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            required value="<?php echo $profile['alamat']; ?>">
-                    </div>
+    <div class="mb-6">
+        <label for="alamat" class="block text-black-700 font-medium mb-2">Alamat</label>
+        <input type="text" id="alamat" name="alamat"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            required value="<?php echo $profile['alamat']; ?>">
+    </div>
 
-                    <div class="mb-6">
-                        <label for="hp" class="block text-black-700 font-medium mb-2">Nomor HP</label>
-                        <input type="text" id="hp" name="hp"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            required value="<?php echo $profile['hp']; ?>">
-                    </div>
+    <div class="mb-6">
+        <label for="hp" class="block text-black-700 font-medium mb-2">Nomor HP</label>
+        <input type="text" id="hp" name="hp"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            required value="<?php echo $profile['hp']; ?>">
+    </div>
 
-                    <div class="mb-6">
-                        <label for="tgl_lahir" class="block text-black-700 font-medium mb-2">Tanggal Lahir</label>
-                        <input type="date" id="tgl_lahir" name="tgl_lahir"
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
-                            required value="<?php echo $profile['tanggal_lahir']; ?>">
-                    </div>
+    <div class="mb-6">
+        <label for="tgl_lahir" class="block text-black-700 font-medium mb-2">Tanggal Lahir</label>
+        <input type="date" id="tgl_lahir" name="tgl_lahir"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900" 
+            required value="<?php echo $profile['tanggal_lahir']; ?>">
+    </div>
 
-                    <button type="submit" class="bg-gray-900 text-white px-6 py-3 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">Save</button>
-                </form>
+    <button type="submit" class="bg-gray-900 text-white px-6 py-3 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">Save</button>
+</form>
+
 
     </main>
 

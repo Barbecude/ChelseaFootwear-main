@@ -15,17 +15,16 @@ class Cart extends CI_Controller {
     public function index() {
         $pid = $this->session->userdata('pid'); // Ambil pid dari session
         $cart_items = $this->M_cart->get_cart_items($pid);
-        
         // Tambahkan detail produk ke setiap item di keranjang
         foreach ($cart_items as $item) {
             $item->product_details = $this->M_cart->get_product_details($item->product_id);
         }
     
         // Ambil ringkasan pesanan
-        $summary = $this->M_cart->get_cart_summary($pid);
+        // $summary = $this->M_cart->get_cart_summary($pid);
         
         $data['cart_items'] = $cart_items;
-        $data['summary'] = $summary; // Tambahkan ringkasan ke data
+        // $data['summary'] = $summary; // Tambahkan ringkasan ke data
         $this->load->view('cart_view', $data);
     }
     
@@ -47,4 +46,6 @@ class Cart extends CI_Controller {
         $this->M_cart->remove_item($item_id);
         redirect('cart');
     }
-}
+
+   
+}    

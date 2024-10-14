@@ -7,39 +7,32 @@ class M_cart extends CI_Model {
 
     public function get_cart_items($pid) {
         return $this->db->get_where($this->table, array('pid' => $pid))->result();
+        
     }
-
+    
     public function get_product_details($product_id) {
         return $this->db->get_where('produk', array('id' => $product_id))->row();
     }
-
-    public function get_cart_summary($pid) {
-        // Ambil semua item keranjang
-        $items = $this->get_cart_items($pid);
-        
-        $subtotal = 0;
-        foreach ($items as $item) {
-            $product = $this->get_product_details($item->product_id);
-            if ($product) {
-                $subtotal += $product->harga * $item->qty; // Asumsi ada field 'qty' di tabel keranjang
+    public function checkout($pid, $selected_items) {
+        // Loop melalui item yang dipilih dan proses pembayaran
+        foreach ($selected_items as $item_id) {
+            $item = $this->db->get_where($this->table, array('id' => $item_id, 'pid' => $pid))->row();
+            if ($item) {
+                // Lakukan logika pembayaran atau proses lain sesuai kebutuhan
+                $this->remove_item($item_id); // Menghapus item dari keranjang setelah checkout
             }
         }
-
-        // Estimasi ongkir dan pajak
-        $estimasi_ongkir = 5.00; // Misal
-        $estimasi_pajak = $subtotal * 0.0832; // Misal 8.32% pajak
-
-        // Total
-        $total = $subtotal + $estimasi_ongkir + $estimasi_pajak;
-
-        return [
-            'subtotal' => $subtotal,
-            'estimasi_ongkir' => $estimasi_ongkir,
-            'estimasi_pajak' => $estimasi_pajak,
-            'total' => $total,
-        ];
+        return true; // Mengembalikan true jika checkout berhasil
     }
 
+    public function jml_item_keranjang_user($pid) {
+        $this->db->distinct();
+        $this->db->select('product_id');
+        $this->db->where('pid', $pid);
+        return $this->db->get($this->table)->num_rows();
+    }
+    
+    
     
     public function add_item($pid, $product_id) {
         $this->db->where('pid', $pid);
@@ -51,11 +44,7 @@ class M_cart extends CI_Model {
             $this->db->set('qty', 'qty + 1', FALSE);
             $this->db->where('pid', $pid);
             $this->db->where('product_id', $product_id);
-            if ($this->db->update($this->table)) {
-                $this->reduce_stock($product_id, 1); // Kurangi stok
-                return true;
-            }
-            return false;
+            $this->db->update($this->table); 
         } else {
             // Jika tidak ada, tambahkan item baru
             $data = array(
@@ -63,12 +52,9 @@ class M_cart extends CI_Model {
                 'product_id' => $product_id,
                 'qty' => 1
             );
-            if ($this->db->insert($this->table, $data)) {
-                $this->reduce_stock($product_id, 1); // Kurangi stok
-                return true;
-            }
-            return false;
+           $this->db->insert($this->table, $data);
         }
+        
     }
 
     public function reduce_stock($product_id, $qty) {

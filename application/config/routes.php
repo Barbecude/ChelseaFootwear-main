@@ -54,5 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['masterdata/update_role'] = 'masterdata/update_role';
 $route['detail/(:num)'] = 'detail/index/$1'; // Menangkap ID produk
-
+$route['profile/(:num)'] = 'profile/index/$1';
+$route['update-profile'] = 'profile/update_profile';
 

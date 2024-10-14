@@ -65,6 +65,11 @@
                             <label for="harga" class="block text-gray-300 mt-2">Harga</label>
                             <input type="number" name="harga" id="harga" class="form-control bg-gray-900 mt-1 p-2 border border-gray-600 rounded-lg w-full" required autocomplete="off">
                         </div>
+                        
+                        <div>
+                            <label for="harga" class="block text-gray-300 mt-2">Stok</label>
+                            <input type="number" name="stok_barang" id="stok_barang" class="form-control bg-gray-900 mt-1 p-2 border border-gray-600 rounded-lg w-full" required autocomplete="off">
+                        </div>
                         <div>
                             <label for="deskripsi" class="block text-gray-300 mt-2">Deskripsi</label>
                             <textarea type="text" name="deskripsi" id="deskripsi" placeholder="Jelaskan detail produk disini" class="form-control bg-gray-900 mt-1 p-2 border border-gray-600 rounded-lg w-full max-h-40" required autocomplete="off"></textarea>

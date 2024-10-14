@@ -63,7 +63,8 @@ class Produk extends CI_Controller {
             'deskripsi'             => $this->input->post('deskripsi'),
             'gambar_satu'           => $gambar_satu,
             'created_at'            => date('Y-m-d H:i:s'),
-            'harga'             => $this->input->post('harga'),
+            'harga'                 => $this->input->post('harga'),
+            'stok'                 => $this->input->post('stok_barang'),
         ];
 
 
@@ -103,6 +104,7 @@ class Produk extends CI_Controller {
             'deskripsi'           => $this->input->post('deskripsi'),
             'gambar_satu'   => $gambar_satu,
             'harga'         => $this->input->post('harga'),
+            'stok'         => $this->input->post('stok_barang')
         ];
 
         $this->db->where('id', $this->input->post('id'));

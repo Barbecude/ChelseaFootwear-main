@@ -1,30 +1,32 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	public function index()
-	{
-		
-		$data = [
-            'link_edit'       	=> 'Home/home_edit',
-            'link_tambah'       => 'Home/home_add',
-            'home'			 	=> $this->db->query('SELECT * FROM home ORDER BY id ASC')->row_array(),
-			'link_edit'       	=> 'Footer/footer_edit',
-            'link_tambah'       => 'Footer/footer_add',
-            'footer'			=> $this->db->query('SELECT * FROM footer ORDER BY id ASC')->row_array(),
-            'link_edit'         => 'Layanan/layanan_edit',
-            'link_tambah'       => 'Layanan/layanan_add',
-            'layanan'           => $this->db->query('SELECT * FROM layanan ORDER BY id ASC')->row_array(),
-            'link_edit'         => 'produk/produk_edit',
-            'link_tambah'       => 'produk/produk_add',
-            'produk'            => $this->db->query('SELECT * FROM produk ORDER BY id ASC')->result_array(),//kirim $produk yg isinya dari array tabel produk
-			'link_edit'         => 'klien/klien',
-            'link_tambah'       => 'klien/klien_add',
-            'klien'             => $this->db->query('SELECT * FROM klien ORDER BY id ASC')->row_array(),      
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('M_cart'); // Memuat model M_cart
+    }
+
+    public function index() {
+        // Dapatkan pid dari session
+        $pid = $this->session->userdata('pid');
+
+        // Hitung jumlah produk unik di keranjang
+        $jumlah_item_keranjang = $this->M_cart->jml_item_keranjang_user($pid);
+
+        $data = [
+            'jumlah_item_keranjang'=> $jumlah_item_keranjang, // Kirim jumlah produk unik ke view
+            'link_edit'            => 'Home/home_edit',
+            'link_tambah'          => 'Home/home_add',
+            'home'                 => $this->db->query('SELECT * FROM home ORDER BY id ASC')->row_array(),
+            'footer'               => $this->db->query('SELECT * FROM footer ORDER BY id ASC')->row_array(),
+            'layanan'              => $this->db->query('SELECT * FROM layanan ORDER BY id ASC')->row_array(),
+            'produk'               => $this->db->query('SELECT * FROM produk ORDER BY id ASC')->result_array(),
+            'klien'                => $this->db->query('SELECT * FROM klien ORDER BY id ASC')->row_array(),
         ];
-		
-		$this->load->view('welcome_message', $data);
-	}
-	
+
+        $this->load->view('welcome_message', $data);
+    }
 }

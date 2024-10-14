@@ -104,7 +104,8 @@ body {
                         </a>
                         <div class="hidden sm:flex">
                         <a class="relative rounded-r-lg border hover:bg-gray-50 p-2.5 flex gap-2" href="<?php echo site_url('cart'); ?>">
-                            <span class="bg-red-600 text-xs text-white font-medium px-1 rounded-full absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">0 </span>
+                            <span class="bg-red-600 text-xs text-white font-medium px-1 rounded-full absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2"><?php echo $jumlah_item_keranjang; ?></span>
+                            
                             <img src="<?php echo base_url()?>assets/assets_web/img/icon/cart.svg">
                         </a>
                     </div>

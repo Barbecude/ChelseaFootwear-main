@@ -40,6 +40,7 @@
                                 <th class="py-4 font-medium">Nama Produk</th>
                                 <th class="font-medium">Jenis</th>
                                 <th class="font-medium">Harga</th>
+                                <th class="font-medium">Stok</th>
                                 <th class="font-medium">Ditambahkan</th>
                                 <th class="font-medium">Status</th>
                             </tr>
@@ -54,6 +55,7 @@
                                     <td class="font-medium"><?php echo $prd['nama_produk']; ?></td>
                                     <td class="text-gray-300"><?php echo $prd['jenis']; ?></td>
                                     <td class=" text-gray-300">Rp <?= number_format($prd['harga'], 0, ',', '.'); ?></td>
+                                    <td class=" text-gray-300"><?= $prd['stok'] ?></td>
                                     <td class=" text-gray-300"><?php echo date('Y-m-d', strtotime($prd['created_at'])); ?></td>
                                     <td><span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-800/30 text-green-500"><span class="size-1.5 inline-block rounded-full bg-green-500"></span>Active</span></td>
                                     <td class="text-end">

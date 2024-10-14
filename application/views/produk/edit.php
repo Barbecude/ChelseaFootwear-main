@@ -70,6 +70,10 @@
                         <label for="harga" class="block text-gray-300 mt-2">Harga</label>
                         <input type="text" name="harga" id="harga" class="form-control bg-gray-900 mt-1 p-2 border border-gray-600 rounded-lg w-full" value="<?php echo $produk['harga']; ?>" required autocomplete="off">
                     </div>
+                    <div>
+                        <label for="stok_barang" class="block text-gray-300 mt-2">Stok</label>
+                        <input type="number" name="stok_barang" id="stok_barang" class="form-control bg-gray-900 mt-1 p-2 border border-gray-600 rounded-lg w-full" value="<?php echo $produk['harga']; ?>" required autocomplete="off">
+                    </div>
                 </div>
             </div>
 
